@@ -9,10 +9,32 @@
             SRT Comments
             </summary>
             <returns> List Of weather </returns>
+            <response code="200"> list of weather </response>
+            <response code="500"> Error Code SRT </response> 
+        </member>
+        <member name="T:SwaggerTest1.WeatherForecast">
+            <summary>
+            Weather Forecast
+            </summary>
         </member>
         <member name="P:SwaggerTest1.WeatherForecast.Date">
             <summary>
             date Of Fire
+            </summary>
+        </member>
+        <member name="P:SwaggerTest1.WeatherForecast.TemperatureC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SwaggerTest1.WeatherForecast.TemperatureF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SwaggerTest1.WeatherForecast.Summary">
+            <summary>
+            
             </summary>
         </member>
     </members>

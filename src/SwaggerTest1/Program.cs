@@ -14,6 +14,18 @@ builder.Services.AddSwaggerGen(setup =>
         Title = "SRT API",
         Version = "1",
         Description = "SRT API Descriptions",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+        {
+            Email = "SRT@Test.com",
+            Name = "SRT Contract",
+            Url = new Uri("http://google.com")
+        },
+        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+        {
+            Name = "SRT Licence",
+            Url = new Uri("http://google.com")
+        },
+        TermsOfService = new Uri("http://google.com")
     });
 
     //- [Step 1: in setting of project->build->output->documentation file ✔]

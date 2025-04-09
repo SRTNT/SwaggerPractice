@@ -22,6 +22,10 @@ namespace SwaggerTest1.Controllers
         /// SRT Comments
         /// </summary>
         /// <returns> List Of weather </returns>
+        /// <response code="200"> list of weather </response>
+        /// <response code="500"> Error Code SRT </response> 
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<WeatherForecast>))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
