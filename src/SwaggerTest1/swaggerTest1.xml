@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SwaggerTest1</name>
+    </assembly>
+    <members>
+        <member name="M:SwaggerTest1.Controllers.WeatherForecastController.Get">
+            <summary>
+            SRT Comments
+            </summary>
+            <returns> List Of weather </returns>
+        </member>
+        <member name="P:SwaggerTest1.WeatherForecast.Date">
+            <summary>
+            date Of Fire
+            </summary>
+        </member>
+    </members>
+</doc>

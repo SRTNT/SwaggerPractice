@@ -18,6 +18,10 @@ namespace SwaggerTest1.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// SRT Comments
+        /// </summary>
+        /// <returns> List Of weather </returns>
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
