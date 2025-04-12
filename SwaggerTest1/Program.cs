@@ -2,6 +2,7 @@
 using SwaggerTest1;
 using System.Reflection;
 
+// Add this for All App
 [assembly: ApiConventionType(typeof(DefaultApiConventions))]
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,11 +13,10 @@ builder.Services.AddControllers(configure =>
 {
     configure.ReturnHttpNotAcceptable = true; // 406
 
-    // Add Attrebuit
-    configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status404NotFound,
-                                                            type: typeof(void)));
-    configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status500InternalServerError,
-                                                            type: typeof(void)));
+    //configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status404NotFound,
+    //                                                        type: typeof(void)));
+    //configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status500InternalServerError,
+    //                                                        type: typeof(void)));
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
