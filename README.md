@@ -83,7 +83,8 @@
 ## Custom Convention - Add Attribute for result with use Custom Attribute
 - Create Static Class
 - Create Function With Necessary Of ProducesResponseType Attrebit
-- public static class CustomConventions
+- ```
+public static class CustomConventions
   {
     // this is apply for insert function - name must be insert
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -93,5 +94,6 @@
     public  static void Insert(object modal)
     {  }
   }
+```
 - [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)] => This is For Use Structure Like Controller of Pre-made Convention
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionCustomAttribute)
