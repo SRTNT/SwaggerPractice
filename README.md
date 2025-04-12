@@ -33,3 +33,8 @@
 - [Step 1: in setting of project -> build -> output -> documentation file ✔]
 - [Step 2: in setting of project -> build -> output -> XML documentation file Path ✔(examp: projectName.xml)]
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/UseSummeryForDescribeAction)
+
+## Show warning in Error Page
+- Add below code in csproject in PropertyGroup Tag
+- <IncludeOpenApiAnalyzer>true</IncludeOpenApiAnalyzer>
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ShowWarningInErrorPage)
