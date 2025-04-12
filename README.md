@@ -32,4 +32,4 @@
 ## Add Summery 🤖
 - [Step 1: in setting of project -> build -> output -> documentation file ✔]
 - [Step 2: in setting of project -> build -> output -> XML documentation file Path ✔(examp: projectName.xml)]
-- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ShowWarningInErrorPage)
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/UseSummeryForDescribeAction)
