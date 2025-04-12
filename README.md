@@ -54,7 +54,7 @@
 });
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/AddAttributeForResultInConfigInPlaceOfEachAction)
 
-## Convention - Add Attribute for result with use Pre-made Attribute
+## Pre-made Convention - Add Attribute for result with use Pre-made Attribute
 #### Action
 - in top of each action in controller
 - must select methos => nameof(DefaultApiConventions.Get)
@@ -75,12 +75,23 @@
   { ... }
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
 
- #### Program.cs config
+#### Program.cs config
 - add below code in top of program.cs
 - [assembly: ApiConventionType(typeof(DefaultApiConventions))]
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
 
-
-
-
-
+## Custom Convention - Add Attribute for result with use Custom Attribute
+- Create Static Class
+- Create Function With Necessary Of ProducesResponseType Attrebit
+- public static class CustomConventions
+  {
+    // this is apply for insert function - name must be insert
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+    public  static void Insert(object modal)
+    {  }
+  }
+- [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)] => This is For Use Structure Like Controller of Pre-made Convention
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionCustomAttribute)

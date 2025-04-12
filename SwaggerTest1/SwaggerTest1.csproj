@@ -6,7 +6,6 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>swaggerTest1.xml</DocumentationFile>
-		<IncludeOpenApiAnalyzer>true</IncludeOpenApiAnalyzer>
 	</PropertyGroup>
 
 	<ItemGroup>

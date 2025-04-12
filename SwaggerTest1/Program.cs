@@ -3,7 +3,7 @@ using SwaggerTest1;
 using System.Reflection;
 
 // Add this for All App
-[assembly: ApiConventionType(typeof(DefaultApiConventions))]
+// [assembly: ApiConventionType(typeof(DefaultApiConventions))]
 
 var builder = WebApplication.CreateBuilder(args);
 
