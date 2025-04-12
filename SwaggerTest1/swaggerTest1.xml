@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SwaggerTest1</name>
+    </assembly>
+    <members>
+        <member name="T:SwaggerTest1.Controllers.WeatherForecastController">
+            <summary>
+            Controller to handle weather forecast related requests.
+            </summary>
+        </member>
+        <member name="M:SwaggerTest1.Controllers.WeatherForecastController.#ctor(Microsoft.Extensions.Logging.ILogger{SwaggerTest1.Controllers.WeatherForecastController})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SwaggerTest1.Controllers.WeatherForecastController"/> class.
+            </summary>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:SwaggerTest1.Controllers.WeatherForecastController.Get">
+            <summary>
+            Gets the weather forecast.
+            </summary>
+            <returns>List of weather forecasts.</returns>
+            <response code="200">Returns the list of weather forecasts.</response>
+            <response code="404">If the weather forecast is not found.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="T:SwaggerTest1.WeatherForecast">
+            <summary>
+            Weather Forecast
+            </summary>
+        </member>
+        <member name="P:SwaggerTest1.WeatherForecast.Date">
+            <summary>
+            date Of Fire
+            </summary>
+        </member>
+        <member name="P:SwaggerTest1.WeatherForecast.TemperatureC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SwaggerTest1.WeatherForecast.TemperatureF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SwaggerTest1.WeatherForecast.Summary">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
