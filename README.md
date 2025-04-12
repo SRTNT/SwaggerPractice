@@ -74,4 +74,13 @@
   public class TestPreMadeFuncController : ControllerBase
   { ... }
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
-  
+
+ #### Program.cs config
+- add below code in top of program.cs
+- [assembly: ApiConventionType(typeof(DefaultApiConventions))]
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
+
+
+
+
+
