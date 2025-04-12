@@ -17,5 +17,14 @@ namespace SwaggerTest1.Controllers
         {
             return Ok();
         }
+
+        [HttpGet]
+        [Route("insert/{data}")]
+        [ApiConventionMethod(typeof(CustomConventions),
+                             nameof(CustomConventions.Insert))]
+        public IActionResult Insert(string data)
+        {
+            return Ok();
+        }
     }
 }
