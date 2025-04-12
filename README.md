@@ -41,7 +41,8 @@
 
 ## Add Attribute for result in Config in place of each action
 - in Program.cs
-- builder.Services.AddControllers(configure =>
+```
+builder.Services.AddControllers(configure =>
 {
     configure.ReturnHttpNotAcceptable = true; // 406
 
@@ -52,27 +53,31 @@
     configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status500InternalServerError, 
                                                             type: typeof(void)));
 });
+```
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/AddAttributeForResultInConfigInPlaceOfEachAction)
 
 ## Pre-made Convention - Add Attribute for result with use Pre-made Attribute
 #### Action
 - in top of each action in controller
 - must select methos => nameof(DefaultApiConventions.Get)
-- [ApiConventionMethod(typeof(DefaultApiConventions),
+```
+[ApiConventionMethod(typeof(DefaultApiConventions),
                        nameof(DefaultApiConventions.Get))]
   [HttpGet]
   public IActionResult Get()
   { ... }
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
-
+```
 #### Controllers
 - in top of each controller
 - each action config in depends on methos
-- [ApiConventionType(typeof(DefaultApiConventions))]
+```
+  [ApiConventionType(typeof(DefaultApiConventions))]
   [ApiController]
   [Route("[controller]")]
   public class TestPreMadeFuncController : ControllerBase
   { ... }
+```
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
 
 #### Program.cs config
@@ -83,7 +88,7 @@
 ## Custom Convention - Add Attribute for result with use Custom Attribute
 - Create Static Class
 - Create Function With Necessary Of ProducesResponseType Attrebit
-- ```
+```
 public static class CustomConventions
   {
     // this is apply for insert function - name must be insert
