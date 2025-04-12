@@ -53,3 +53,34 @@
                                                             type: typeof(void)));
 });
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/AddAttributeForResultInConfigInPlaceOfEachAction)
+
+## Convention - Add Attribute for result with use Pre-made Attribute
+#### Action
+- in top of each action in controller
+- must select methos => nameof(DefaultApiConventions.Get)
+- [ApiConventionMethod(typeof(DefaultApiConventions),
+                       nameof(DefaultApiConventions.Get))]
+  [HttpGet]
+  public IActionResult Get()
+  { ... }
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
+
+#### Controllers
+- in top of each controller
+- each action config in depends on methos
+- [ApiConventionType(typeof(DefaultApiConventions))]
+  [ApiController]
+  [Route("[controller]")]
+  public class TestPreMadeFuncController : ControllerBase
+  { ... }
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
+
+ #### Program.cs config
+- add below code in top of program.cs
+- [assembly: ApiConventionType(typeof(DefaultApiConventions))]
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionPreMadeAttribute)
+
+
+
+
+
