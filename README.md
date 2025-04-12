@@ -38,3 +38,18 @@
 - Add below code in csproject in PropertyGroup Tag
 - <IncludeOpenApiAnalyzer>true</IncludeOpenApiAnalyzer>
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ShowWarningInErrorPage)
+
+## Add Attribute for result in Config in place of each action
+- in Program.cs
+- builder.Services.AddControllers(configure =>
+{
+    configure.ReturnHttpNotAcceptable = true; // 406
+
+    // Default For Status404NotFound
+    configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status404NotFound, 
+                                                            type: typeof(void)));
+    // Default For Status500InternalServerError
+    configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status500InternalServerError, 
+                                                            type: typeof(void)));
+});
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/AddAttributeForResultInConfigInPlaceOfEachAction)
