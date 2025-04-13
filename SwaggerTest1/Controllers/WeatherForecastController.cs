@@ -32,11 +32,9 @@ namespace SwaggerTest1.Controllers
         /// <response code="200">Returns the list of weather forecasts.</response>
         /// <response code="404">If the weather forecast is not found.</response>
         /// <response code="500">Internal server error.</response>
-        // Comment Below
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<WeatherForecast>))]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<WeatherForecast>))]
         [HttpGet(Name = "GetWeatherForecast")]
+        [Produces("application/json")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
