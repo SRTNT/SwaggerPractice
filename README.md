@@ -102,3 +102,21 @@ public static class CustomConventions
 ```
 - [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)] => This is For Use Structure Like Controller of Pre-made Convention
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionCustomAttribute)
+
+## Control The Media Type For Action
+- Add Below Attrebuit
+- [Produces("application/json")]
+```
+[HttpGet(Name = "GetWeatherForecast")]
+[Produces("application/json")]
+public IEnumerable<WeatherForecast> Get()
+{
+    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+    {
+        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+        TemperatureC = Random.Shared.Next(-20, 55),
+        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+    })
+    .ToArray();
+}
+```

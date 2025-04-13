@@ -13,10 +13,10 @@ builder.Services.AddControllers(configure =>
 {
     configure.ReturnHttpNotAcceptable = true; // 406
 
-    //configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status404NotFound,
-    //                                                        type: typeof(void)));
-    //configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status500InternalServerError,
-    //                                                        type: typeof(void)));
+    configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status404NotFound,
+                                                            type: typeof(void)));
+    configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status500InternalServerError,
+                                                            type: typeof(void)));
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
