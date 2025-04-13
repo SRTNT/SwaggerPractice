@@ -105,10 +105,12 @@ public static class CustomConventions
 
 ## Control The Media Type For Action
 - Add Below Attrebuit
-- [Produces("application/json")]
+- request: [Produces("application/json")]
+- response: [Consumes("application/xml")]
 ```
 [HttpGet(Name = "GetWeatherForecast")]
-[Produces("application/json")]
+[Produces("application/json")] // for request body
+[Consumes("application/xml")] // for response body
 public IEnumerable<WeatherForecast> Get()
 {
     return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -120,3 +122,4 @@ public IEnumerable<WeatherForecast> Get()
     .ToArray();
 }
 ```
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionCustomAttribute)
