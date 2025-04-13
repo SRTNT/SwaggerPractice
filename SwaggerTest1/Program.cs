@@ -22,20 +22,38 @@ builder.Services.AddControllers(configure =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setup =>
 {
-    setup.SwaggerDoc("SRT", new Microsoft.OpenApi.Models.OpenApiInfo()
+    setup.SwaggerDoc("Group1", new Microsoft.OpenApi.Models.OpenApiInfo()
     {
-        Title = "SRT API",
+        Title = "Group 1",
         Version = "1",
-        Description = "SRT API Descriptions",
+        Description = "Group 1 API Descriptions",
         Contact = new Microsoft.OpenApi.Models.OpenApiContact()
         {
-            Email = "SRT@Test.com",
-            Name = "SRT Contract",
+            Email = "Group1@Test.com",
+            Name = "Group 1 Contract",
             Url = new Uri("http://google.com")
         },
         License = new Microsoft.OpenApi.Models.OpenApiLicense()
         {
-            Name = "SRT Licence",
+            Name = "Group 1 Licence",
+            Url = new Uri("http://google.com")
+        },
+        TermsOfService = new Uri("http://google.com")
+    });
+    setup.SwaggerDoc("Group2", new Microsoft.OpenApi.Models.OpenApiInfo()
+    {
+        Title = "Group 2",
+        Version = "2",
+        Description = "Group 2 API Descriptions",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+        {
+            Email = "Group2@Test.com",
+            Name = "Group 2 Contract",
+            Url = new Uri("http://google.com")
+        },
+        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+        {
+            Name = "Group 2 Licence",
             Url = new Uri("http://google.com")
         },
         TermsOfService = new Uri("http://google.com")
@@ -59,7 +77,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(setup =>
     {
-        setup.SwaggerEndpoint("/swagger/SRT/swagger.json", "SRT API UI");
+        setup.SwaggerEndpoint("/swagger/Group1/swagger.json", "Group 1 API UI");
+        setup.SwaggerEndpoint("/swagger/Group2/swagger.json", "Group 2 API UI");
 
         // Remove swagger from url
         setup.RoutePrefix = string.Empty;

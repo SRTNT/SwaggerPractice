@@ -123,3 +123,42 @@ public IEnumerable<WeatherForecast> Get()
 }
 ```
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ActionMediaTypeControl)
+
+## Grouping API
+- Declare Group => program.cs => builder config
+```
+setup.SwaggerDoc("Group1", new Microsoft.OpenApi.Models.OpenApiInfo()
+{
+    Title = "Group 1",
+    Version = "1",
+    Description = "Group 1 API Descriptions",
+    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+    {
+        Email = "Group1@Test.com",
+        Name = "Group 1 Contract",
+        Url = new Uri("http://google.com")
+    },
+    License = new Microsoft.OpenApi.Models.OpenApiLicense()
+    {
+        Name = "Group 1 Licence",
+        Url = new Uri("http://google.com")
+    },
+    TermsOfService = new Uri("http://google.com")
+});
+```
+- declare route of each group => program.cs => app config
+```
+app.UseSwaggerUI(setup =>
+{
+    setup.SwaggerEndpoint("/swagger/Group1/swagger.json", "Group 1 API UI");
+    setup.SwaggerEndpoint("/swagger/Group2/swagger.json", "Group 2 API UI");
+
+    // Remove swagger from url
+    setup.RoutePrefix = string.Empty;
+});
+```
+- in top of each controller or action
+```
+    [ApiExplorerSettings(GroupName = "Group1")]
+```
+- if this Attrebit not exist for action, this action is going to appear for all group
