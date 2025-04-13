@@ -7,6 +7,7 @@ namespace SwaggerTest1.Controllers
     //[ApiConventionType(typeof(DefaultApiConventions))]
     [ApiController]
     [Route("[controller]")]
+    [ApiExplorerSettings(GroupName = "Group2")]
     public class TestPreMadeFuncController : ControllerBase
     {
         // Add For Action

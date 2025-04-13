@@ -36,7 +36,21 @@ namespace SwaggerTest1.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         [Produces("application/json")] // for request body
         [Consumes("application/xml")] // for response body
+        [ApiExplorerSettings(GroupName = "Group1")]
         public IEnumerable<WeatherForecast> Get()
+        {
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            })
+            .ToArray();
+        }
+
+        [HttpPost]
+        [ApiExplorerSettings(GroupName = "Group2")]
+        public IEnumerable<WeatherForecast> Post()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
