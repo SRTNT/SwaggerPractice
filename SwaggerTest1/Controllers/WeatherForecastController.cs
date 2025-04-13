@@ -34,7 +34,8 @@ namespace SwaggerTest1.Controllers
         /// <response code="500">Internal server error.</response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<WeatherForecast>))]
         [HttpGet(Name = "GetWeatherForecast")]
-        [Produces("application/json")]
+        [Produces("application/json")] // for request body
+        [Consumes("application/xml")] // for response body
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
