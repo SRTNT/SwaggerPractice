@@ -122,4 +122,4 @@ public IEnumerable<WeatherForecast> Get()
     .ToArray();
 }
 ```
-- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ConventionCustomAttribute)
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/ActionMediaTypeControl)
