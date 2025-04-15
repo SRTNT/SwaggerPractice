@@ -36,14 +36,15 @@ builder.Services.AddApiVersioning(options =>
 //});
 
 // Add Swagger
-builder.Services.AddSwaggerGen(options =>
+builder.Services.AddSwaggerGen(option =>
 {
     // Define Swagger documents for each version
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API V1", Version = "v1" });
-    options.SwaggerDoc("v2", new OpenApiInfo { Title = "My API V2", Version = "v2" });
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "My API V1", Version = "v1" });
+    option.SwaggerDoc("v2", new OpenApiInfo { Title = "My API V2", Version = "v2" });
 
     // Use the versioned API explorer to create Swagger documents
-    options.DocInclusionPredicate((version, apiDescription) =>
+    #region Filter View Of versions
+    option.DocInclusionPredicate((version, apiDescription) =>
     {
         var CurrentVersion = double.Parse(version.ToLower().Replace("v", ""));
 
@@ -69,6 +70,27 @@ builder.Services.AddSwaggerGen(options =>
 
         return versionsMap.Count == 0 && versionsNormal.Count == 0;
     });
+    #endregion
+
+    // تنظیمات احراز هویت با توکن
+    #region Authenticatio of swagger UI for request
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = $@"JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    }); 
+    option.AddSecurityDefinition("srt", new OpenApiSecurityScheme
+    {
+        Description = $@"srt Authorization header using the Bearer scheme. Enter 'srt' [space] and then your token in the text input below.",
+        Name = "AuthorizationSRT",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "srt"
+    });
+    #endregion
 });
 
 var app = builder.Build();
@@ -80,12 +102,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
 
     // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
-    app.UseSwaggerUI(c =>
+    app.UseSwaggerUI(option =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-        c.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V2");
+        option.DocumentTitle = "Swagger Title";
 
-        c.RoutePrefix = string.Empty;
+        option.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        option.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V2");
+
+        option.RoutePrefix = string.Empty;
+
+        // Close All Documentation Accourdeon Panel
+        option.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
     });
 }
 

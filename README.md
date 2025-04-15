@@ -225,7 +225,30 @@ builder.Services.AddSwaggerGen(options =>
 ```
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/Versioning)
 
-
+## Versioning
+- Add Below Code in Program.cs => in AddSwaggerGen
+```
+    // تنظیمات احراز هویت با توکن
+    #region Authenticatio of swagger UI for request
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = $@"JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    }); 
+    option.AddSecurityDefinition("srt", new OpenApiSecurityScheme
+    {
+        Description = $@"srt Authorization header using the Bearer scheme. Enter 'srt' [space] and then your token in the text input below.",
+        Name = "AuthorizationSRT",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "srt"
+    });
+    #endregion
+```
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/Authentications)
 
 
 
