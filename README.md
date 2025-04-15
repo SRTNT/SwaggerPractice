@@ -162,3 +162,68 @@ app.UseSwaggerUI(setup =>
     [ApiExplorerSettings(GroupName = "Group1")]
 ```
 - if this Attrebit not exist for action, this action is going to appear for all group
+
+## Versioning
+- Add In Program.cs
+- Builder Config
+```
+builder.Services.AddApiVersioning(options =>
+{
+    options.ReportApiVersions = true;
+});
+
+builder.Services.AddSwaggerGen(options =>
+{
+    // Define Swagger documents for each version
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API V1", Version = "v1" });
+    options.SwaggerDoc("v2", new OpenApiInfo { Title = "My API V2", Version = "v2" });
+
+    // Use the versioned API explorer to create Swagger documents
+    options.DocInclusionPredicate((version, apiDescription) =>
+    {
+        var CurrentVersion = double.Parse(version.ToLower().Replace("v", ""));
+
+        var versionsNormal = apiDescription.ActionDescriptor
+            .EndpointMetadata
+            .OfType<ApiVersionAttribute>()
+            .SelectMany(v => v.Versions)
+            .Select(v => double.Parse(v.ToString()))
+            .ToImmutableList();
+
+        if (versionsNormal.Any(v => v == CurrentVersion))
+            return true;
+
+        var versionsMap = apiDescription.ActionDescriptor
+            .EndpointMetadata
+            .OfType<MapToApiVersionAttribute>()
+            .SelectMany(v => v.Versions)
+            .Select(v => double.Parse(v.ToString()))
+            .ToImmutableList();
+
+        if (versionsMap.Any(v => v == CurrentVersion))
+            return true;
+
+        // if no api versioning show it in all versins
+        return versionsMap.Count == 0 && versionsNormal.Count == 0;
+    });
+});
+```
+- App Config
+```
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V2");
+
+        c.RoutePrefix = string.Empty;
+    });
+```
+- for each action or controllers
+```
+        [ApiVersion("1.0")]
+```
+
+
+
+
+

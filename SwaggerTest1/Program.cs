@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SwaggerTest1;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
+using System.Collections.Immutable;
 using System.Reflection;
 
 // Add this for All App
@@ -18,55 +20,55 @@ builder.Services.AddControllers(configure =>
     configure.Filters.Add(new ProducesResponseTypeAttribute(statusCode: StatusCodes.Status500InternalServerError,
                                                             type: typeof(void)));
 });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(setup =>
+// Add services to the container
+builder.Services.AddApiVersioning(options =>
 {
-    setup.SwaggerDoc("Group1", new Microsoft.OpenApi.Models.OpenApiInfo()
+    options.ReportApiVersions = true;
+});
+// Register API Explorer for versioned APIs
+//.AddApiExplorer(options =>
+//{
+//    options.GroupNameFormat = "'v'VVV"; // Format for versioning
+//    options.SubstituteApiVersionInUrl = false; // Substitute version in URL
+//});
+
+// Add Swagger
+builder.Services.AddSwaggerGen(options =>
+{
+    // Define Swagger documents for each version
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API V1", Version = "v1" });
+    options.SwaggerDoc("v2", new OpenApiInfo { Title = "My API V2", Version = "v2" });
+
+    // Use the versioned API explorer to create Swagger documents
+    options.DocInclusionPredicate((version, apiDescription) =>
     {
-        Title = "Group 1",
-        Version = "1",
-        Description = "Group 1 API Descriptions",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
-        {
-            Email = "Group1@Test.com",
-            Name = "Group 1 Contract",
-            Url = new Uri("http://google.com")
-        },
-        License = new Microsoft.OpenApi.Models.OpenApiLicense()
-        {
-            Name = "Group 1 Licence",
-            Url = new Uri("http://google.com")
-        },
-        TermsOfService = new Uri("http://google.com")
+        var CurrentVersion = double.Parse(version.ToLower().Replace("v", ""));
+
+        var versionsNormal = apiDescription.ActionDescriptor
+            .EndpointMetadata
+            .OfType<ApiVersionAttribute>()
+            .SelectMany(v => v.Versions)
+            .Select(v => double.Parse(v.ToString()))
+            .ToImmutableList();
+
+        if (versionsNormal.Any(v => v == CurrentVersion))
+            return true;
+
+        var versionsMap = apiDescription.ActionDescriptor
+            .EndpointMetadata
+            .OfType<MapToApiVersionAttribute>()
+            .SelectMany(v => v.Versions)
+            .Select(v => double.Parse(v.ToString()))
+            .ToImmutableList();
+
+        if (versionsMap.Any(v => v == CurrentVersion))
+            return true;
+
+        return versionsMap.Count == 0 && versionsNormal.Count == 0;
     });
-    setup.SwaggerDoc("Group2", new Microsoft.OpenApi.Models.OpenApiInfo()
-    {
-        Title = "Group 2",
-        Version = "2",
-        Description = "Group 2 API Descriptions",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
-        {
-            Email = "Group2@Test.com",
-            Name = "Group 2 Contract",
-            Url = new Uri("http://google.com")
-        },
-        License = new Microsoft.OpenApi.Models.OpenApiLicense()
-        {
-            Name = "Group 2 Licence",
-            Url = new Uri("http://google.com")
-        },
-        TermsOfService = new Uri("http://google.com")
-    });
-
-    //- [Step 1: in setting of project->build->output->documentation file ✔]
-    //- [Step 2: in setting of project->build->output->XML documentation file Path ✔(examp: projectName.xml)]
-    //- [Code](https://github.com/SRTNT/SwaggerPractice/tree/main/src/SwaggerTest1)
-
-    var xmlCommentsfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlCommentsfilePath = Path.Combine(AppContext.BaseDirectory, xmlCommentsfile);
-
-    setup.IncludeXmlComments(xmlCommentsfilePath);
 });
 
 var app = builder.Build();
@@ -74,14 +76,16 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Enable middleware to serve generated Swagger as a JSON endpoint
     app.UseSwagger();
-    app.UseSwaggerUI(setup =>
-    {
-        setup.SwaggerEndpoint("/swagger/Group1/swagger.json", "Group 1 API UI");
-        setup.SwaggerEndpoint("/swagger/Group2/swagger.json", "Group 2 API UI");
 
-        // Remove swagger from url
-        setup.RoutePrefix = string.Empty;
+    // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V2");
+
+        c.RoutePrefix = string.Empty;
     });
 }
 
