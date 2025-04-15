@@ -162,6 +162,7 @@ app.UseSwaggerUI(setup =>
     [ApiExplorerSettings(GroupName = "Group1")]
 ```
 - if this Attrebit not exist for action, this action is going to appear for all group
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/GroupingControllers)
 
 ## Versioning
 - Add In Program.cs
@@ -222,6 +223,7 @@ builder.Services.AddSwaggerGen(options =>
 ```
         [ApiVersion("1.0")]
 ```
+- [Code](https://github.com/SRTNT/SwaggerPractice/tree/Versioning)
 
 
 
