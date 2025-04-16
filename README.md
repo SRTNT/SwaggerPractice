@@ -36,7 +36,9 @@
 
 ## Show warning in Error Page
 - Add below code in csproject in PropertyGroup Tag
-- <IncludeOpenApiAnalyzer>true</IncludeOpenApiAnalyzer>
+```
+<IncludeOpenApiAnalyzer>true</IncludeOpenApiAnalyzer>
+```
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ShowWarningInErrorPage)
 
 ## Add Attribute for result in Config in place of each action
