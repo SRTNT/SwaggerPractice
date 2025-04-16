@@ -39,6 +39,13 @@
 ```
 <IncludeOpenApiAnalyzer>true</IncludeOpenApiAnalyzer>
 ```
+- Add Below Code in program.cs =>
+```
+      var xmlCommentsfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlCommentsfilePath = Path.Combine(AppContext.BaseDirectory, xmlCommentsfile);
+
+    setup.IncludeXmlComments(xmlCommentsfilePath);
+```
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ShowWarningInErrorPage)
 
 ## Add Attribute for result in Config in place of each action
