@@ -36,5 +36,14 @@
 
 ## Show warning in Error Page
 - Add below code in csproject in PropertyGroup Tag
-- <IncludeOpenApiAnalyzer>true</IncludeOpenApiAnalyzer>
+```
+<IncludeOpenApiAnalyzer>true</IncludeOpenApiAnalyzer>
+```
+- Add Below Code in program.cs =>
+```
+      var xmlCommentsfile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlCommentsfilePath = Path.Combine(AppContext.BaseDirectory, xmlCommentsfile);
+
+    setup.IncludeXmlComments(xmlCommentsfilePath);
+```
 - [Code](https://github.com/SRTNT/SwaggerPractice/tree/ShowWarningInErrorPage)
