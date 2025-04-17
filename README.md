@@ -27,8 +27,6 @@
 
 <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=srtnt&show_icons=true&locale=en" alt="srtnt" /></p>
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=srtnt&" alt="srtnt" /></p>
-
 ## Add Summery 🤖
 - [Step 1: in setting of project -> build -> output -> documentation file ✔]
 - [Step 2: in setting of project -> build -> output -> XML documentation file Path ✔(examp: projectName.xml)]
