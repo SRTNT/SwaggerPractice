@@ -91,6 +91,11 @@ builder.Services.AddSwaggerGen(option =>
         Scheme = "srt"
     });
     #endregion
+
+    // Include XML comments
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    option.IncludeXmlComments(xmlPath);
 });
 
 var app = builder.Build();

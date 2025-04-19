@@ -4,5 +4,34 @@
         <name>SwaggerTest1</name>
     </assembly>
     <members>
+        <member name="T:Library.API.Controllers.AuthorsV1Controller">
+            <summary>
+            sdfgsdfgsdfgsdfgsdfgs
+            </summary>
+        </member>
+        <member name="M:Library.API.Controllers.AuthorsV1Controller.#ctor">
+            <summary>
+            sdfgsdfgsdf
+            </summary>
+        </member>
+        <member name="M:Library.API.Controllers.AuthorsV1Controller.func1">
+            <summary>
+            sdfgsdfgsd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.API.Controllers.AuthorsV1Controller.func2(System.Int32)">
+            <summary>
+            سیبلسیبلایسبایبایبل
+            </summary>
+            <param name="authorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.API.Controllers.AuthorsV1Controller.Func3">
+            <summary>
+            esdfgsdfgsdfgsdf
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>
